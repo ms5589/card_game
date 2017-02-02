@@ -1,0 +1,6 @@
+<title> Users </title>
+<h1>List of users</h1>
+
+    <% users.forEach(function(usr) { %>
+    <%- include('_user', {users: usr}) %>
+    <% }); %> </br>

@@ -1,0 +1,6 @@
+<title> Users </title>
+<h1>List of Cards</h1>
+
+    <% deckCards.forEach(function(crd) { %>
+    <%- include('_temp', {deckCards: crd}) %>
+    <% }); %> </br>
