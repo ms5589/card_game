@@ -12,10 +12,14 @@ class Deck{
   		console.log("Controller > Deck > shuffleDeck()");
 
   		var deckCards = [];
+  		var cards_for_player1 = [];
+  		var cards_for_player2 = [];
+  		var cards_for_player3 = [];
+  		var cards_for_player4 = [];
 		
 		//Getting the deck ready here
-		//Will run this process/loop twice since we need two deck to play this game
-		for(var num=1; num<=2; num++){
+		//Will run this process/loop once since we need one deck to play this game
+		for(var num=1; num<=1; num++){
 			for(var x=0; x<cards.Suits.length; x++){
 				for(var y=0; y<cards.CardValues.length; y++){
 					deckCards.push(cards.CardValues[y]+cards.Suits[x]);
@@ -31,9 +35,10 @@ class Deck{
 		    	var a = deckCards[c];
 		    	deckCards[c] = deckCards[rand];
 		    	deckCards[rand] = a;
+
 	  	}
-	  	
-	  	res.render('temp/temp',{deckCards:deckCards});
+	  	console.log("A deck has number of cards = ",deckCards.length);
+	  	res.render('temp/temp',{deckCards: deckCards});
 	}
 }
 

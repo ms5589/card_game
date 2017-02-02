@@ -1,6 +1,8 @@
-<title> Users </title>
-<h1>List of Cards</h1>
+<title> Lobby </title>
 
-    <% deckCards.forEach(function(crd) { %>
+<h1>List of Cards</h1>
+<body>	
+	<% deckCards.forEach(function(crd) { %>
     <%- include('_temp', {deckCards: crd}) %>
     <% }); %> </br>
+ </body>

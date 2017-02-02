@@ -7,7 +7,7 @@ var http = require('http'),
   	socket = require('socket.io'),
   	io = socket.listen(http);
 
-app.set('port', process.env.PORT || 5000)
+app.set('port', process.env.PORT || 4001)
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
@@ -24,5 +24,5 @@ app.get('/signup', homepage.signup);
 app.get('/game',deck.shuffleDeck);
 
 app.listen(app.get('port'), function(){
-  console.log('Express started. Server listening on port 5000. Press Ctrl-C to terminate');
+  console.log('Express started. Server listening on port 4001. Press Ctrl-C to terminate');
 });

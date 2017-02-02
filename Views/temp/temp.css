@@ -1,0 +1,39 @@
+/* player1 is a user player far at the bottom and center of the screen*/
+div.player1 {
+  text-align: center;
+  position: fixed;
+  background-color: yellow;
+}
+
+/* player2 is going to be on far left of the screen*/
+.player2 {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+/* player3 is going to be on far top of the screen*/
+.player3 {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+/* player4 is going to be on far right of the screen*/
+.player4 {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+/* table is going to be in the middle of the screen*/
+.table {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}

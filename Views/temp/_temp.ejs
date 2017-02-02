@@ -1,6 +1,15 @@
  <html>
+ 
  <body>
+
+ <!-- <button onclick="myFunct()"> Debug</button> -->
  <label for="cards" font-size="46px">Card val: </label>
- <input name="cards" type="text" id="card"
- value="<%= deckCards %>" readonly="readonly" autocomplete="off"/> </br>
+ <input type="text" id="cards" value="<%= deckCards %>" readonly="readonly" autocomplete="off"/> </br>
+	
+ <script type="text/javascript">
+ 	function myFunct(){
+ 		var v = document.getElementById('cards').value;
+ 		alert(v);
+ 	}
+ </script>
  </body>
