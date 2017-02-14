@@ -1,0 +1,21 @@
+<style>
+body{ background-image: url("login.jpg"); background-size: 1210px 655px; background-color: white; background-repeat: no-repeat; }
+label{ font-size:26px;
+       margin: 0.3%;
+       font-weight: bold;
+       color: green; }
+h5 { font-size: 24px; color: black;}
+</style>
+
+<h1>Log in</h1>
+
+<form action="/login" method="POST">
+  <label for="username">Username:
+    <input name="username" type="text" style="height: 25px; width: 158px; font-size: 25px;"></br>
+  </label>
+  <label for="password">Password:
+     <input name="password" type="password" style="height: 25px; width: 158px; font-size: 25px;">
+  </label> </br>
+  <input type="submit" value="Log In" style="height: 18px; width: 168px; font-size: 25px;">
+</form>
+</br><h5> Don't have an account? <a href="/signup"> Sign up</a> </h5>

@@ -1,16 +1,71 @@
 
 "use strict"
-var db = require('../db');
+
+var encryption = require('../encryption'), //USE AFTER PERMISSION
+    db = require('../db'),
+    formidable = require('formidable');
+
 
 class Home{
 	index(req, res){
 		console.log("Controller > homepage.js > index()");
 		res.render("login/index"), {layout: "index"};
   	}
-  	signup(req, res){
-		console.log("Controller > homepage.js > signup()");
-		res.render("login/signup"), {layout: "index"};
+  	
+  	logout(req, res){
+  		req.session.reset();
+  		console.log("Controller > homepage.js > logout()");
+  		res.redirect('/login');
   	}
+
+  	getLogin(req, res){
+  		req.session.reset();
+  		console.log("Controller > homepage.js > login()");
+		res.render("login/login"), {layout: "index"};
+  	}
+
+  	login(req, res, next) {
+    req.session.reset();
+    //res.render("session/delete", {user: {username: "Guest"}});
+    var form = new formidable.IncomingForm();
+    form.parse(req, (err, fields, files) => {
+      if(err) return res.sendStatus(500);
+      db.get("SELECT * FROM users WHERE username = ?", fields.username, (err, user) => {
+        if(err) return res.render('login/login_error', {message: "Username/Password not found.  Please try again.", user: req.user});
+        if(!user) return res.render('login/login_error', {message: "Username/Password not found.  Please try again.", user: req.user});
+        if(user.password_digest != encryption.digest(fields.password + user.salt)) return res.render('login/login_error', {message: "Username/Password not found.  Please try again.", user: req.user});
+        req.session.user_id = user.id;
+        return res.redirect('/game');
+      });
+    });
+  }
+   	
+   	getSignup(req, res){
+   		req.session.reset();
+		console.log("Controller > homepage.js > getSignup()");
+		res.render("login/signup"), {layout: "index"};
+   	}
+
+  	signup(req,res,next) {
+  	console.log("Controller > homepage.js > signup()");
+    var salt = encryption.salt();
+    var form = new formidable.IncomingForm();
+	req.session.reset();
+    form.parse(req, (err, fields, files) => {
+      if(err) return res.sendStatus(500);
+      console.log("username: ",fields.username," Pwrd", fields.password);
+      db.run("INSERT INTO users (username, admin, blocked, password_digest, salt) values (?,?,?,?,?)",
+       fields.username,
+       false,
+       false,
+       encryption.digest(fields.password + salt),
+       salt, function(err, user) {
+         if(err) {console.log(err); return res.render('login/signup_error', {message: "Username is already taken.  Please try other username.", user: req.user});}
+         else { return res.render('login/login', {message: "Account has been created, Please login now.", user: req.user});}
+         return res.redirect('/login');
+       });
+    });
+  }
 }
 
 module.exports = exports = new Home();

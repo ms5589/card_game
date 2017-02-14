@@ -1,0 +1,4 @@
+- build middleware first
+- try to build a game room first with 4 players and assign them turns
+- then distribute cards
+- then think of who wins

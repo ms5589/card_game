@@ -1,0 +1,53 @@
+<html>
+<head>
+  <style>
+  body{ background-size: 1210px 655px; background-color: white; background-repeat: no-repeat; }
+  label{ font-size:26px;
+         margin: 0.3%;
+         font-weight: bold;
+         color: green; }
+  h8 { font-size: 15px; color: black;}
+  a {font-size: 23px; color: #330033;}
+  a:hover {color: #6600cc; font-size: 32px;}
+  
+  </style>
+</head>
+<div class="message">
+  <%= message %>
+</div>
+<body>
+<h1>Sign up</h1>
+
+<form action="/signup" method="POST">
+  <label for="username" >Select a Username
+  <input name="username" id="username" type="text" autocomplete="off" style="height: 35px; width: 158px; font-size: 25px;">
+
+  <h8> </br></br>(Password has to be at least 6 characters long)</br>
+  </h8>
+  <label for="password">Choose Password
+  <input name="password" id="password" type="password" onkeyup= check() style="height: 25px; width: 158px; font-size: 25px;"></br>
+
+  <label for="passwordTwo">Re-type the Password
+  <input name="passwordTwo" id="passwordTwo" type="password" onkeyup= check() style="height: 25px; width: 158px; font-size: 25px;"></br>
+
+  <input type="submit" id="signup" value="Sign up" disabled="true" style="height: 45px; width: 168px; font-size: 25px; font-weight: bold">
+
+</form>
+
+<script type="text/javascript">
+function check() {
+ if(document.getElementById("password").value.length > 5 &&  document.getElementById("password").value == document.getElementById("passwordTwo").value)
+  {
+    //alert(document.getElementById("password").value.length);
+    document.getElementById("signup").disabled = false;
+    document.getElementById("signup").style.borderColor =  "green";
+  //document.getElementById("body").style.backgroundColor = "yellow";
+  }
+  else{
+    document.getElementById("signup").disabled = true;
+    document.getElementById("signup").style.borderColor =  "red";
+  }
+}
+</script>
+</body>
+</html>
