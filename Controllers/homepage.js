@@ -19,7 +19,7 @@ class Home{
         //{id : 0}
         res.render('login/index', {gameID: id.id});
       });
-  }
+    }
 
   	
   	logout(req, res){

@@ -2,8 +2,8 @@
 "use strict"
 var db = require('../db');
 	// formidable = require('formidable'),
-  	// encryption = require("../database/encryption");
-  	// fs = require("fs-extra");
+  // encryption = require("../database/encryption");
+  // fs = require("fs-extra");
 
 
 class User{
