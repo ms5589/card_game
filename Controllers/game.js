@@ -8,9 +8,10 @@ var db = require('../db');
 
 class Game{
 	
-	addGame(req, res){
+	startGame(req, res){
     // var id = req.route.path.split("/")[2];
-    console.log("In addGame ");
+    console.log("startGame()");
+    res.render('lobby/game_room');
     // db.run("INSERT INTO game (winner) values (?)",'');
     // var username = db.get("SELECT * FROM users WHERE id = ?", req.session.user_id, function(err, username){
     //   if(err) console.log(err, "Error while searching table users.");
@@ -19,8 +20,9 @@ class Game{
     //   console.log("Username: ",username);
     //   });
 
-    res.render('lobby/lobby');
+    
   }
+
   dealer(req, res){
     res.render('lobby/dealer.js');
   }

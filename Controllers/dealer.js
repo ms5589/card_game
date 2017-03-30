@@ -9,11 +9,23 @@ window.onload = function() {
   // Handle game on events
   socket.on('game on', function() {
     message.innerHTML = 'started?';
-    message.style.display = 'none';
+    var btn = window.document.createElement("BUTTON");
+    var t = document.createTextNode("Deal");
+    btn.appendChild(t);
+    document.body.appendChild(btn);
+    btn.onclick = function(){
+      socket.emit('deal');
+    }
+    //message.style.display = 'none';
   });
+}
 
-  socket.on('deal', function() {
-    message.innerHTML = 'dealing...!';
-    message.style.display = 'Dealing';
-  });
+window.onkeydown = function(event) {
+  event.preventDefault();
+    switch(event.keyCode) {
+    // Enter
+      case 13:
+      socket.emit('deal');
+      break;
+  }
 }

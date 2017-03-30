@@ -24,6 +24,11 @@ function Game(io, sockets, room) {
       player.socket.on('deal', function() {
         io.to(room).emit('Dealing cards');
       });
+
+      // socket.on('deal', function() {
+      //   message.innerHTML = 'dealing...!';
+      //   message.style.display = 'Dealing';
+      // });
       
       return player;
     });
@@ -32,4 +37,14 @@ function Game(io, sockets, room) {
     // Start the game
 
     this.io.to(this.room).emit('game on');
-  }
+}
+
+Game.prototype.update = function() {
+    var room = this.room;
+    var io = this.io;
+
+    // Update players
+    this.players.forEach(function(player, i, players){
+      var otherPlayer = players[(i+1)%2];
+    });
+}

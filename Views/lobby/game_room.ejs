@@ -1,44 +1,22 @@
 <!-- IGNORE THE FILE (NOT IN USE FOR NOW) -->
-
+<html>
 <title> Game room	 </title>
 <a href="/logout"> Sign out </a>
 <h1>Enjoy the game</h1>
-
-	Under Construction
-    <div id="chat"></div> </br>
-  	<form id="send-message">
-    	<input id="message"></input>
-  		<button style="height:30px; width: 72px;"> Send </button>
-  	</form>
-
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-    <!-- TUE: 9:40-11:30 -->
-    <script>
-      jQuery(function($){
-        var uname = ""+"<%= username %>";
-        var finalMsg = "";
-        var users = ""+uname;
-        users += users;
-        //$($users).add(uname);
-        //alert(users);
-        var socket = io.connect();
-        var $form = $('#send-message');
-        var $msgBox = $('#message').css({ 'height': "30px", 'width': "65%" });
-        $('form').attr( 'autocomplete', 'off');
-        var $chat = $('#chat').css({ 'height': "450px", 'width':"71.5%", 'overflow': "scroll", 'border-style': "solid", 'border-color':" #e6e6e6"});
-        //var $users = $('#userBox').css({ 'height': "50px", 'width': "25%" });
-        //$users.val(users);
-      $form.submit(function(e){
-        e.preventDefault();
-        var msg = ""+uname+": "+$msgBox.val().replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        socket.emit('send message', msg);
-        $msgBox.val('');
-      });
-      socket.on('new message', function(data){
-        data = data.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-        finalMsg = "&nbsp"+"&nbsp;"+data;
-        $chat.append("", finalMsg, "<br/><br/>");
-      });
-    });
- 	</script>
+  <head>
+    <title>Lobby</title>
+    <!-- <link type="text/css" rel="stylesheet" href="lightbikes.css"> -->
+  </head>
+  <body>
+    <h1>Game Lobby</h1>
+    <div id="wrapper">
+      <canvas id="screen" width="200" height="200"></canvas>
+      <div id="message">
+        Waiting for players...
+      </div></br>
+      <!-- <button>Deal</button> -->
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="dealer.js"></script>
+  </body>
+</html>

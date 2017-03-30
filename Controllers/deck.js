@@ -12,11 +12,7 @@ class Deck{
   		console.log("Controller > Deck > shuffleDeck()");
 
   		var deckCards = [];
-  		var cards_for_player1 = [];
-  		var cards_for_player2 = [];
-  		var cards_for_player3 = [];
-  		var cards_for_player4 = [];
-		
+
 		//Getting the deck ready here
 		//Will run this process/loop once since we need one deck to play this game
 		for(var num=1; num<=1; num++){
@@ -38,7 +34,8 @@ class Deck{
 
 	  	}
 	  	console.log("A deck has number of cards = ",deckCards.length);
-	  	res.render('temp/temp',{deckCards: deckCards});
+	  	return deckCards;
+	  	// res.render('temp/temp',{deckCards: deckCards});
 	}
 }
 

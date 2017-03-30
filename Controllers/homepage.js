@@ -1,4 +1,3 @@
-
 "use strict"
 
 var encryption = require('../encryption'), //USE AFTER PERMISSION
@@ -10,17 +9,8 @@ class Home{
 
     index(req, res){
       console.log("Controller > User > index()");
-      var gameID = db.get("SELECT * from game WHERE id = (SELECT MAX(id) from game)", function(err, id){
-        if(err) {
-          console.error(err);
-          return res.sendStatus(400);
-        }
-        console.log("GAME ID: ", id.id);
-        //{id : 0}
-        res.render('login/index', {gameID: id.id});
-      });
+      res.render('login/index');
     }
-
   	
   	logout(req, res){
   		req.session.reset();
@@ -75,6 +65,11 @@ class Home{
           return res.redirect('/login');
         });
       });
+    }
+
+    display404(req, res){
+      console.log("Controller > homepage.js > display404()");
+      res.render('error');
     }
 }
 

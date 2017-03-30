@@ -1,6 +1,3 @@
-// THIS FILE IS AN ATTEMPT TO BUILD THE APPLICATION WITH THE EXPRESS (NOT IN USE FOR NOW)
-// IGNORE THIS FILE
-
 const PORT = 4001;
 // var http = require('http'),
 var login_user = require('./middleware/login_user'),
@@ -22,8 +19,8 @@ var games = 0;
 const Game = require('./controllers/gameplay');
 
 app.set('port', process.env.PORT || 4001)
-app.set('view engine', 'ejs');
-app.set('views', './views');
+app.engine('js', require('ejs').renderFile);
+app.set('view engine', 'ejs')
 
 // Enable sessions
 app.use(sessions({
@@ -37,28 +34,8 @@ app.use(express.static(path.join(__dirname, "/views")));
 
 var users = require('./controllers/user');
 var homepage = require('./controllers/homepage');
-var cards = require('./controllers/cards');
-var deck = require('./controllers/deck');
-var game = require('./controllers/game')
+var gameController = require('./controllers/game')
 var gameplay = require('./controllers/gameplay')
-var html = fs.readFileSync('Views/lobby/game_room.html', {encoding: 'utf8'});
-var js = fs.readFileSync('Controllers/gameplay.js', {encoding: 'utf8'});
-
-function handleRequest(request, response) {
-  switch(request.url) {
-    case '/game':
-    // case '/index.html':
-    case '/game_room.html':
-      response.setHeader('Content-Type', 'text/html');
-      response.end(html);
-      break;
-
-    case '/gameplay.js':
-      response.setHeader('Content-Type', 'text/js');
-      response.end(js);
-      break;
-  }
-}
 
 app.get('/players', admin, users.index);
 app.get('/', homepage.index);
@@ -70,9 +47,9 @@ app.post('/login', homepage.login);
 app.get('/signup', homepage.getSignup)
 app.post('/signup', homepage.signup);
 // app.get('/game', gameplay.Game);
-app.get('/game', login_user, noGuest, game.addGame);
-app.get('/dealer.js',function(){res.render('lobby/dealer.js')});
-
+app.get('/game', login_user, noGuest, gameController.startGame);
+app.get('/dealer.js', gameController.dealer);
+app.get('*', homepage.display404);
 
 /* Handles a player connection */
 io.on('connection', function(socket) {
