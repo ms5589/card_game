@@ -1,5 +1,3 @@
-const PORT = 4001;
-// var http = require('http'),
 var login_user = require('./middleware/login_user'),
     noGuest = require('./middleware/guest'),
     admin = require('./middleware/admin'),
@@ -7,20 +5,21 @@ var login_user = require('./middleware/login_user'),
     fs = require('fs'),
     express = require('express'),
     app = express(),
-    path = require('path');
-
+    path = require('path'),
     http = require('http').Server(app),
     socket = require('socket.io'),
     io = socket.listen(http);
 
-
+var plyr = require('./Controllers/player');
+var deck = require('./Controllers/deck');
 var players = [];
 var games = 0;
 const Game = require('./controllers/gameplay');
 
-app.set('port', process.env.PORT || 4001)
+app.set('port', process.env.PORT || 4002)
 app.engine('js', require('ejs').renderFile);
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
+app.use(express.static(path.join(__dirname, "/Views")));
 
 // Enable sessions
 app.use(sessions({
@@ -30,26 +29,31 @@ app.use(sessions({
     activeDuration: 1000 * 60 * 5
 }));
 
-app.use(express.static(path.join(__dirname, "/views")));
-
 var users = require('./controllers/user');
 var homepage = require('./controllers/homepage');
 var gameController = require('./controllers/game')
 var gameplay = require('./controllers/gameplay')
 
-app.get('/players', admin, users.index);
+// GET ROUTES
 app.get('/', homepage.index);
+app.get('/players', admin, users.index);
 app.get('/logout', homepage.logout)
-
 app.get('/login', homepage.getLogin);
-app.post('/login', homepage.login);
-
 app.get('/signup', homepage.getSignup)
-app.post('/signup', homepage.signup);
-// app.get('/game', gameplay.Game);
 app.get('/game', login_user, noGuest, gameController.startGame);
 app.get('/dealer.js', gameController.dealer);
 app.get('*', homepage.display404);
+
+// POST ROUTES
+app.post('/login', homepage.login);
+app.post('/signup', homepage.signup);
+
+// TEST ROUTES
+// app.get('/Controllers/dealer.js', function(req, res){res.render('/dealer.js')});
+// app.get('/favicon.ico', homepage.display404);
+// app.get('/game', gameplay.Game);
+// app.get('/test', plyr.getHand);
+// app.get('/deck', deck.shuffleDeck);
 
 /* Handles a player connection */
 io.on('connection', function(socket) {
@@ -69,5 +73,7 @@ io.on('connection', function(socket) {
 });
 
 http.listen(app.get('port'), function() {
-    console.log('Express started. Server listening on port 3000. Press Ctrl-C to terminate');
+    console.log('Express started. Server listening on port 4002. Press Ctrl-C to terminate');
 });
+// 2168 2183 3099EH
+// Reference: nathanhbean.com/courses/cis580 ---- > lightbikes

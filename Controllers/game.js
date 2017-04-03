@@ -1,31 +1,15 @@
-
 "use strict"
 var db = require('../db');
-	// formidable = require('formidable'),
-  // encryption = require("../database/encryption");
-  // fs = require("fs-extra");
 
-
-class Game{
-	
+class Game{	
 	startGame(req, res){
-    // var id = req.route.path.split("/")[2];
-    console.log("startGame()");
-    res.render('lobby/game_room');
-    // db.run("INSERT INTO game (winner) values (?)",'');
-    // var username = db.get("SELECT * FROM users WHERE id = ?", req.session.user_id, function(err, username){
-    //   if(err) console.log(err, "Error while searching table users.");
-    //   username = username.username;
-    //   // res.render('lobby/game_room', {username: username.username});
-    //   console.log("Username: ",username);
-    //   });
-
-    
+    console.log("Controller > Game > startGame()");
+    res.render('lobby/game_room');    
   }
-
   dealer(req, res){
-    res.render('lobby/dealer.js');
+    console.log("Controller > Game > dealer()");
+    res.render('/dealer.js');
   }
 }
+
 module.exports = exports = new Game();
-// nathanhbean.com/courses/cis580 ---- > lightbikes

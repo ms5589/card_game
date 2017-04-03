@@ -68,7 +68,7 @@ class Home{
     }
 
     display404(req, res){
-      console.log("Controller > homepage.js > display404()");
+      console.log("Controller > homepage.js > display404() =", req.url);
       res.render('error');
     }
 }

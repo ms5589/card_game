@@ -4,7 +4,7 @@ var cards = require('./cards');
 class Deck{
 
 	constructor() {
-		this.cards = new Array(cards);
+		this.cardss = new Array(cards);
 	}
 
 	// Shuffles the deck
