@@ -4,15 +4,35 @@ module.exports = exports = Game;
 
 function Game(io, sockets, room) {
     this.io = io;
-    this.name = '';
     this.room = room;
+    this.deckCards = [];
+    this.card = {
+      suits : ['H','S','C','D'],
+      cardValues : ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
+    }
+    // this.temp = { temp: this.card.suits }
+    this.deck = this.deckCards;
+    // this.deck = function(socket, i) {
+    //     for(var num=1; num<=1; num++){
+    //       for(var x=0; x<this.card.suits.length; x++){
+    //         for(var y=0; y<this.card.cardValues.length; y++){
+    //           this.deckCards.push(this.card.cardValues[y]+this.card.suits[x]);
+    //         } 
+    //       }
+    //     }
+    //     // return this.deckCards;
+    //     return 'teST';
+    //     // break;
+    // }
+      // 
+    
     this.players = sockets.map(function(socket, i) {
-
       // Initialize the player
       var player = {
         socket: socket,
         id: i + 1,
-        name: ''
+        name: '',
+        hand: ''
       }
 
       // Join the room
@@ -26,13 +46,9 @@ function Game(io, sockets, room) {
       player.socket.on('deal', function() {
         io.to(room).emit('Dealing cards');
       });
-
-      // socket.on('deal', function() {
-      //   message.innerHTML = 'dealing...!';
-      //   message.style.display = 'Dealing';
-      // });
       
       return player;
+
     });
     
     this.players[0].x = 210;
@@ -41,7 +57,10 @@ function Game(io, sockets, room) {
       x: this.players[0].x,
       y: this.players[0].y,
       id: this.players[0].id,
-      name: 'YOU'
+      name: 'YOU',
+      hand: this.deck
+      // hand: this.temp.temp
+      // deck: ''+this.deck
     });
     
     this.players[1].x = 210;
@@ -53,6 +72,7 @@ function Game(io, sockets, room) {
       name: 'PLAYER 1'
     });
     
+    /*
     this.players[2].x = 25;
     this.players[2].y = 190;
     this.io.to(this.room).emit('set', {
@@ -69,7 +89,8 @@ function Game(io, sockets, room) {
       y: this.players[3].y,
       id: this.players[3].id,
       name: 'PLAYER 3'
-    });
+    }); 
+    */
     var game = this;
     // Start the game
 
@@ -84,10 +105,13 @@ Game.prototype.update = function() {
     // Update players
     this.players.forEach(function(player, i, players){
       var otherPlayer = players[(i+1)%2];
+      player.socket.emit('victory');
       io.to(room).emit('set', {
         x: player.x,
         y: player.y,
-        id: player.id
+        id: player.id,
+        hand: x,
+        name: player.name
       });
     });
 }

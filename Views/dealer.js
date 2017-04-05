@@ -15,10 +15,11 @@ window.onload = function() {
     ctx.fillStyle = colors[player.id];
     ctx.font = "20px Georgia";
     var name = ''+player.name;
-    console.log('Name',name);
-    console.log("PLAYER ID= ",ctx.fillStyle);
+    var hand = ''+player.hand;
+    console.log('Name',hand);
+    console.log("PLAYER ID= ", ctx.fillStyle);
     ctx.fillRect(player.x, player.y, 60, 60);
-    ctx.fillText(name,player.x,player.y);
+    ctx.fillText(hand, player.x, player.y);
   });
 
   // Handle game on events
@@ -32,6 +33,11 @@ window.onload = function() {
       alert('Clicked');
     }
     //message.style.display = 'none';
+  });
+
+  socket.on('victory', function() {
+    message.innerHTML = 'You win!';
+    // message.style.display = 'block';
   });
 
   window.onkeydown = function(event) {

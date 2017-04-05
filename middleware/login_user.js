@@ -12,7 +12,8 @@ function login_user(req, res, next) {
       req.user = user;
       return next();
     });
-  } else {
+  } 
+  else {
   	console.log("In else LOGIN USER = ", req.user)
     req.user = {username: "Guest"}
     next();

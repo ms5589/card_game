@@ -34,8 +34,8 @@ class Deck{
 
 	  	}
 	  	console.log("A deck has number of cards = ",deckCards.length);
-	  	return deckCards;
-	  	// res.render('temp/temp',{deckCards: deckCards});
+	  	// return deckCards;
+	  	res.render('temp/temp',{deckCards: deckCards});
 	}
 }
 

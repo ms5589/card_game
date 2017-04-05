@@ -8,6 +8,7 @@ var login_user = require('./middleware/login_user'),
     path = require('path'),
     http = require('http').Server(app),
     socket = require('socket.io'),
+    favicon = require('serve-favicon'),
     io = socket.listen(http);
 
 var plyr = require('./Controllers/player');
@@ -18,7 +19,9 @@ const Game = require('./controllers/gameplay');
 
 app.set('port', process.env.PORT || 4002)
 app.engine('js', require('ejs').renderFile);
+// app.engine('image', require('ejs').renderFile);
 app.set('view engine', 'ejs');
+app.use(favicon(__dirname + '/spades.ico'));
 app.use(express.static(path.join(__dirname, "/Views")));
 
 // Enable sessions
@@ -42,6 +45,7 @@ app.get('/login', homepage.getLogin);
 app.get('/signup', homepage.getSignup)
 app.get('/game', login_user, noGuest, gameController.startGame);
 app.get('/dealer.js', gameController.dealer);
+app.get('/deck', deck.shuffleDeck);
 app.get('*', homepage.display404);
 
 // POST ROUTES
@@ -53,7 +57,7 @@ app.post('/signup', homepage.signup);
 // app.get('/favicon.ico', homepage.display404);
 // app.get('/game', gameplay.Game);
 // app.get('/test', plyr.getHand);
-// app.get('/deck', deck.shuffleDeck);
+
 
 /* Handles a player connection */
 io.on('connection', function(socket) {
