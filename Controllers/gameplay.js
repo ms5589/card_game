@@ -4,27 +4,29 @@ module.exports = exports = Game;
 
 function Game(io, sockets, room) {
     this.io = io;
-    this.room = room;
-    this.deckCards = [];
-    this.card = {
-      suits : ['H','S','C','D'],
-      cardValues : ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
-    }
-    // this.temp = { temp: this.card.suits }
-    this.deck = this.deckCards;
-    // this.deck = function(socket, i) {
-    //     for(var num=1; num<=1; num++){
-    //       for(var x=0; x<this.card.suits.length; x++){
-    //         for(var y=0; y<this.card.cardValues.length; y++){
-    //           this.deckCards.push(this.card.cardValues[y]+this.card.suits[x]);
-    //         } 
-    //       }
-    //     }
-    //     // return this.deckCards;
-    //     return 'teST';
-    //     // break;
-    // }
-      // 
+    this.room = room;    
+    this.deck = sockets.map(function(deckCards) {
+        deckCards = []
+        suits = ['H','S','C','D'],
+        cardValues = ['A','2','3','4','5','6','7','8','9','10','J','Q','K']
+        for(var num=1; num<=1; num++){
+          console.log("debug", suits);
+          for(var x=0; x<suits.length; x++){
+            for(var y=0; y<cardValues.length; y++){
+              deckCards.push(cardValues[y]+suits[x]);
+            } 
+          }
+        }
+        for(var c = deckCards.length - 1; c > 0; c--) {
+          var rand = Math.floor(Math.random() * (c + 1));
+          var a = deckCards[c];
+          deckCards[c] = deckCards[rand];
+          deckCards[rand] = a;
+
+        }
+        return deckCards;
+
+    });
     
     this.players = sockets.map(function(socket, i) {
       // Initialize the player
@@ -110,7 +112,7 @@ Game.prototype.update = function() {
         x: player.x,
         y: player.y,
         id: player.id,
-        hand: x,
+        hand: player.hand,
         name: player.name
       });
     });
