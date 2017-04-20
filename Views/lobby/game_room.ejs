@@ -1,16 +1,105 @@
-<!-- IGNORE THE FILE (NOT IN USE FOR NOW) -->
+<!doctype html>
 <html>
-<link href="./spades.ico" rel="shortcut icon">
-<title> Game room	 </title>
-<a href="/logout"> Sign out </a>
   <body>
-    <div id="wrapper">
-      <canvas id="screen" width="500" height="500"></canvas>
-      <div id="message">
-        Waiting for players...
-      </div></br>
-    </div>
+  <head>
+  <style>
+      #player4 {
+        position: relative;
+        background-image: url("cards.png");
+        left: 402px;
+        width: 200px;
+        height: 100px;
+        /*right: 12px;*/
+        border: 3px solid #73AD21;
+      }
+      #player3 {
+        position: relative;
+        background-image: url("cards.png");
+        left: 710px;
+        top: 30px;
+        width: 200px;
+        height: 100px;
+        border: 3px solid #73AD21;
+      }
+      #player2 {
+        position: relative;
+        background-image: url("cards.png");
+        left: 120px;
+        bottom: 60px;
+        width: 200px;
+        height: 100px;
+        border: 3px solid #73AD21;
+      }
+      #player1 {
+        background-image: url("cards.png");
+        position: relative;
+        left: 402px;
+        width: 200px;
+        height: 100px;
+        border: 3px solid #73AD21;
+      }
+      #table {
+        background-image: url("table.jpg");
+        position: relative;
+        top: -300px;
+        left: 350px;
+        width: 320px;
+        height: 160px;
+        border: 3px solid #73AD21;
+      }
+      #table > a{
+        color: yellow;
+        text-align: center;
+      }
+  </style>
+
+  <title>Lobby</title>
     <script src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript" src="./dealer.js"></script>
+    <script type="text/javascript" src="dealer.js"></script>
+    <script>
+      function myFunction(){
+          // alert('hi');
+          document.getElementById("table").innerHTML = '';
+          // alert(document.getElementById("table").innerHTML); 
+      }
+
+      function allowDrop(ev) {
+          ev.preventDefault();
+      }
+
+      function drag(ev) {
+          ev.dataTransfer.setData("text", ev.target.id);
+      }
+
+      function drop(ev) {
+          ev.preventDefault();
+          var data = ev.dataTransfer.getData("text");
+          ev.target.appendChild(document.getElementById(data));
+      }
+    </script>
+  <a href="/logout">Logout</a>
+  </head>
+  
+    <h1>Game Lobby</h1>
+    <div id="message">
+        Waiting for players...
+    </div></br> 
+    <div id="wrapper">
+      <!-- <canvas id="screen" width="620" height="620"></canvas> -->
+          <div id="player4">
+              Player4
+          </div>
+          <div id="player3">
+              Player3
+          </div>
+          <div id="player2">
+              Player2
+          </div>
+          <div id="player1">
+              Player1
+          </div>
+          <div id="table" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+    </div>
+    <button onclick="myFunction()">Click me</button>
   </body>
 </html>

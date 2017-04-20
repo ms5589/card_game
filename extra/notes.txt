@@ -6,6 +6,10 @@
 314 - 803 - 2322
 USAHOHHQOXM17C
 USAHOHHQOXM17C
+
+USAH0202DN17 (IND GOV)
+556420329
+
 CKGS Application Center Houston
 Binz Building, Suite 550, 1001 Texas Avenue, 
 Houston, TX 77002
@@ -13,6 +17,10 @@ Houston, TX 77002
 516-206-1483
 18042052DITFK //ind gov
 11 april 2000
+
+----- where to put passport
+----- return 1 envelope or 2
+----- only label or envelope (return)
 
 us passport - first2
 ind passport - pg no. 1,2,3,34,35,36,37
