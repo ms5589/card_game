@@ -2,15 +2,13 @@
 // class Game{
 module.exports = exports = Game;
 numberOfdecks = [1];
+
 function Game(io, sockets, room) {
+    
     this.io = io;
     this.room = room;
-    
-    // this.xx = this.deck[0].slice(0,3);
-    // this.x = this.deck[0].slice(4,7);
-    
-    this.players = sockets.map(function(socket, i) {
-    
+
+    // Create and shuffle the deck
     this.deck = numberOfdecks.map(function(deckCards) {
         deckCards = []
         suits = ['H','S','C','D'],
@@ -31,14 +29,16 @@ function Game(io, sockets, room) {
           deckCards[c] = deckCards[rand];
           deckCards[rand] = a;
         }
-        // console.log("Debug> length(0-3):", deckCards.slice(0,3));
-        // console.log("Debug> length(4-7):", deckCards.slice(4,7));
+        
         return deckCards; 
     });
 
+    this.players = sockets.map((socket, i) => {
+
       // Draw a hand for the player
       var hand = []
-      // console.log('Debug length: ',this.deck[0].length);
+      
+      // console.log('Debug length: ',i);
       hand.push(this.deck[0].pop());
       hand.push(this.deck[0].pop());
       hand.push(this.deck[0].pop());
@@ -55,6 +55,7 @@ function Game(io, sockets, room) {
       var table = {
         cards: ''
       }
+      
       // Join the room
       player.socket.join(room);
 
@@ -62,13 +63,22 @@ function Game(io, sockets, room) {
       player.socket.on('disconnect', function() {
         io.to(room).emit('player disconnected');
       });
+
+      // Handle card played events 
+      player.socket.on('played-card', function(cardName){
+        console.log('played-card', cardName, 'player ', player.id);
+        
+        // TODO: player can only play cards in thier hand 
+                
+        // if(player.hand.includes(cardName)){
+          io.emit('card-played', {player: player.id, card: cardName});
+          console.log('The Card: ', cardName, " was played!");
+        // }
+      });
       
       return player;
 
     });
-    
-    // this.players[0].x = 210;
-    // this.players[0].y = 420;
 
     // After players are all set up...
     this.io.to(room).emit('set', {
@@ -82,7 +92,6 @@ function Game(io, sockets, room) {
       })
     });
 
-
     // send individual hand messages
     this.players.forEach(function(player) {
       player.socket.emit('hand', {
@@ -91,15 +100,13 @@ function Game(io, sockets, room) {
         hand: player.hand
       })
     });
+    
+    // Start the game
+    var game = this;
 
-    // Set up game events
-    this.io.on('bid', function(){
-      // TODO: Handle bidding
-    })
-
-    this.io.on('show', function(){
-      // TODO: Handle showing hand
-    })
+    this.io.to(this.room).emit('game on');
+    // this.io.to(this.room).emit('card-played');
+}
 
 /*
     // notify player 0 of thier info
@@ -153,13 +160,7 @@ function Game(io, sockets, room) {
       name: 'PLAYER 3'
     }); 
     */
-    
-    var game = this;
-    // Start the game
 
-    this.io.to(this.room).emit('game on');
-
-}
 
 /*
 Game.prototype.update = function() {

@@ -54,8 +54,12 @@ class Home{
       form.parse(req, (err, fields, files) => {
           if(err) return res.sendStatus(500);
           console.log("username: ",fields.username," Pwrd", fields.password);
-          db.run("INSERT INTO users (username, admin, blocked, password_digest, salt) values (?,?,?,?,?)",
+          db.run("INSERT INTO users (username, fname, lname, email, coins, admin, blocked, password_digest, salt) values (?,?,?,?,?,?,?,?,?)",
           fields.username,
+          fields.fname,
+          fields.lname,
+          fields.email,
+          25000,
           false,
           false,
           encryption.digest(fields.password + salt),

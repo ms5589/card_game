@@ -40,6 +40,7 @@ var gameplay = require('./controllers/gameplay')
 // GET ROUTES
 app.get('/', homepage.index);
 app.get('/players', admin, users.index);
+app.get('/account', login_user, noGuest, users.account);
 app.get('/logout', homepage.logout)
 app.get('/login', homepage.getLogin);
 app.get('/signup', homepage.getSignup)
@@ -52,23 +53,14 @@ app.get('*', homepage.display404);
 app.post('/login', homepage.login);
 app.post('/signup', homepage.signup);
 
-// TEST ROUTES
-// app.get('/Controllers/dealer.js', function(req, res){res.render('/dealer.js')});
-// app.get('/favicon.ico', homepage.display404);
-// app.get('/game', gameplay.Game);
-// app.get('/test', plyr.getHand);
-
-
 /* Handles a player connection */
 io.on('connection', function(socket) {
+    
     console.log('a user connected', players.length);
-    socket.on('send message', function(data) {
-        io.emit('new message', data);
-        console.log('Message: ', data);
-    });
+
     players.push(socket);
 
-    // If we have 4 players, Launch a game instance
+    // If we have 2 players, Launch a game instance
     if (players.length == 2) {
         new Game(io, players, games);
         players = [];
@@ -79,6 +71,7 @@ io.on('connection', function(socket) {
 http.listen(app.get('port'), function() {
     console.log('Express started. Server listening on port 4002. Press Ctrl-C to terminate');
 });
+
 // 2168 2183 3099EH
 // https://www.shutterstock.com/video/clip-130507-stock-footage-showing-a-royal-straight-flush.html?src=rel/127663:1/3p
 // Reference: nathanhbean.com/courses/cis580 ---- > lightbikes

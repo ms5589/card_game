@@ -1,17 +1,15 @@
 window.onload = function() {
 
   // Global variables
-  // var canvas = document.getElementById('screen');
   var message = document.getElementById('message');
   var player4 = document.getElementById('player4');
   var player3 = document.getElementById('player3');
   var player2 = document.getElementById('player2');
   var player1 = document.getElementById('player1');
-  // var ctx = canvas.getContext('2d');
-  // ctx.fillStyle = 'gray';
-  // ctx.fillRect(0, 0, 1000, 1000);
+
   var socket = io();
   var colors = [];
+  var me = 1;
   colors[0] = 'green';
   colors[1] = 'red';
 
@@ -19,12 +17,12 @@ window.onload = function() {
   socket.on('set', function(set){
 
     set.players.forEach(function(player){
-      var id = player.id // player's id
-      var name = player.name // player's name
-      var hand = player.hand // player's hand
-      
-      console.log("Player ID: ", id);
-      console.log('Name: ',name);
+      var id = player.id      // player's id
+      var name = player.name  // player's name
+      var hand = player.hand  // player's hand
+
+      // save the current player globally
+      me = id;
 
       if(id == 1){
           name = 'Player1';
@@ -45,30 +43,28 @@ window.onload = function() {
 
     })
     
-    // var id = set.id;
-    // var name = ''+set.name;
-    // var hand = ''+set.hand;
-    // you.innerHTML = name+': '+hand;
-
-    
-    // ctx.fillStyle = colors[id];
-    // ctx.fillStyle = '#e2fc3c';
-    // ctx.font = "20px Arial";
-    // ctx.fillRect(set.x, set.y, 60, 60);
-    // ctx.fillText(id+" "+name+" "+hand, set.x, set.y);
   });
 
   // Handle game on events
   socket.on('game on', function() {
+    
     message.innerHTML = 'Game started';
-    var btn = window.document.createElement("BUTTON");
-    var t = document.createTextNode("Deal");
-    btn.appendChild(t);
-    // document.body.appendChild(btn);
-    btn.onclick = function(){
-      alert('Clicked');
-    }
-    //message.style.display = 'none';
+
+  });
+
+  socket.on('card-played', function(data) {
+       var card = document.createElement("a");
+       card.href = "#";
+       card.text = " "+data.card;
+       table.appendChild(card);
+
+       // Decrement the corresponding player's hand 
+       /*if(data.playerId != me) {
+         var player = document.getElementById('player' + data.player);
+         player.innerHTML = player.innerHTML.slice(0, player.innerHTML.length - 1);
+       }*/
+
+       console.log('dealer() > card played', data.card);   
   });
 
   socket.on('hand', function(plyr) {
@@ -76,8 +72,8 @@ window.onload = function() {
       var id = plyr.id;
       var hand = plyr.hand;
       var name = plyr.name;
+      
       if(id == 1){
-          
           name = 'Player1';
           var temp = ''+hand;
           var result1 = temp.split(",");
@@ -101,7 +97,7 @@ window.onload = function() {
           name = 'Player4';
           player4.innerHTML =  name+': '+hand;
       }
-    //message.style.display = 'block';
+      
   });
 
   window.onkeydown = function(event) {
@@ -113,5 +109,10 @@ window.onload = function() {
         socket.emit('deal');
         break;
     }
+  }
+
+  window.playCard = function(card) {
+    console.log('card.txt: ', card);
+    socket.emit('played-card', card);
   }
 }
