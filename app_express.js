@@ -1,7 +1,4 @@
-var login_user = require('./middleware/login_user'),
-    noGuest = require('./middleware/guest'),
-    admin = require('./middleware/admin'),
-    sessions = require('client-sessions'),
+var sessions = require('client-sessions'),
     fs = require('fs'),
     express = require('express'),
     app = express(),
@@ -35,16 +32,19 @@ app.use(sessions({
 var users = require('./controllers/user');
 var homepage = require('./controllers/homepage');
 var gameController = require('./controllers/game')
-var gameplay = require('./controllers/gameplay')
+var gameplay = require('./controllers/gameplay');
+var login = require('./middleware/login_user');
+var noGuest = require('./middleware/guest');
+var adminOnly = require('./middleware/admin_Only');
 
 // GET ROUTES
 app.get('/', homepage.index);
-app.get('/players', admin, users.index);
-app.get('/account', login_user, noGuest, users.account);
+app.get('/players', login, adminOnly, users.index);
+app.get('/account', login, noGuest, users.account);
 app.get('/logout', homepage.logout)
 app.get('/login', homepage.getLogin);
 app.get('/signup', homepage.getSignup)
-app.get('/game', login_user, noGuest, gameController.startGame);
+app.get('/game', login, noGuest, gameController.startGame);
 app.get('/dealer.js', gameController.dealer);
 app.get('/deck', deck.shuffleDeck);
 app.get('*', homepage.display404);

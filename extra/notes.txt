@@ -35,3 +35,6 @@ Usac00817.pdf(ind gov)
 affidative of lipu
 ups label.cif 
 230
+
+http://10.131.1.200:4002/login/
+iconfig | grep inet

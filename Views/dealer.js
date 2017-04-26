@@ -59,10 +59,10 @@ window.onload = function() {
        table.appendChild(card);
 
        // Decrement the corresponding player's hand 
-       /*if(data.playerId != me) {
+       if(data.playerId != me) {
          var player = document.getElementById('player' + data.player);
          player.innerHTML = player.innerHTML.slice(0, player.innerHTML.length - 1);
-       }*/
+       }
 
        console.log('dealer() > card played', data.card);   
   });

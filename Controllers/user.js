@@ -1,8 +1,8 @@
 
 "use strict"
-var db = require('../db');
-	// formidable = require('formidable'),
-  // encryption = require("../database/encryption");
+var db = require('../db'),
+	  formidable = require('formidable'),
+    encryption = require("../database/encryption");
   // fs = require("fs-extra");
 
 
@@ -21,14 +21,12 @@ class User{
 
   account(req, res){
     console.log("Controller > User > index()");
-      var users = db.get('SELECT * FROM users WHERE username=?',
-      req.user.username,
+      var users = db.get('SELECT * FROM users WHERE username=?', req.user.username,
       function(err, item){
         if(err) {
           console.error(err);
           return res.sendStatus(400);
         }
-        // console.log(item);
         res.render('users/account', {users: item});
     });
   }
