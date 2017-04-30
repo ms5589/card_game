@@ -4,6 +4,28 @@
   <head>
 
   <style>
+      .center{
+        /*margin: auto;*/
+        width: 980px;
+        border: 3px solid;
+        padding: 10px;
+        color: black;
+        background-color: yellow;
+        text-decoration: none;
+        font-family: Arial;
+        font-size: 21px;
+        text-align: center;
+      }
+      #center > a{
+        text-decoration: none ;
+        font-size: 21px;
+        color: black; 
+      }
+      a:hover{ 
+        color: black;
+        text-decoration: none ;
+        background-color: #d6ff8c; 
+      }
       #header{
         color: red;
         font-size: 23px;
@@ -57,23 +79,57 @@
         color: yellow;
         text-align: center;
       }
+      .game{
+        /*margin: auto;*/
+        width: 980px;
+        border: 3px solid;
+        padding: 10px;
+        /*text-align: center;*/
+      }
+      p1 > a, p1> a:hover, p1> a:active{
+        text-decoration: none ;
+        font-size: 20px;
+        color: black;      
+      }
+      .chat{
+        height: 675px;
+        width: 300px; 
+        position: relative;
+        /*padding: 10px;*/
+        top: -740px;
+        left: 1025px;
+        border: 3px solid;
+        overflow: "scroll"; 
+        /*border-style: "solid";*/
+        border-color:" #e6e6e6";
+      }
+      .chat-message{
+        position: relative;
+        left: 910px;
+        top: 300px;
+      }
   </style>
 
-  <title>Game Room EJS</title>
-
-  <div id="header">
-  &nbsp<a href="/account"> Account </a>&nbsp&nbsp&nbsp
-  &nbsp<a href="/players">Players </a>&nbsp&nbsp&nbsp
-  &nbsp<a href="/logout">Logout </a></br>
-  <p style="color: yellow; font-size: 14px">hidden text ;)</p>
+  <title>Game Room</title>
+  <div class="center">
+      <p1>
+        <a href="/">Home page</a>&nbsp&nbsp&nbsp&nbsp
+        <a href="/account">My account</a>&nbsp&nbsp&nbsp&nbsp
+        <a href="/game">New game</a>&nbsp&nbsp&nbsp&nbsp
+        <% if(users.admin){ %>
+              <a href="/players">Players</a>&nbsp&nbsp&nbsp&nbsp
+        <% } %> 
+        <a href="/logout">Signout</a>&nbsp&nbsp&nbsp&nbsp
+      </p1>
   </div>
     
-  </head>
-  
-    <h1>Game Lobby</h1>
+  </head></br>
+    <div class="game">
+    <!-- <h1>Game Lobby</h1> -->
     <div id="message">
         Waiting for players...
-    </div></br> 
+    </div></br>
+    
     <div id="wrapper">
     <!-- <canvas id="screen" width="620" height="620"></canvas> -->
           <div id="player4">
@@ -89,9 +145,9 @@
               Player1
           </div>
           <div id="table" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    </div>
+    </div></div>
     <button onclick="myFunction()">Click me</button>
-
+    
   <script src="/socket.io/socket.io.js"></script>
   <!-- <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script> -->
   <script type="text/javascript" src="dealer.js"></script>
@@ -120,11 +176,6 @@
           document.getElementById('table').removeChild(card);
           window.playCard(card.text);
       }
-
-      /* socket.on('new message', function(data)){
-          alert('do some');
-          // document.getElementById("table").innerHTML = data;
-      } */
 
   </script>
 

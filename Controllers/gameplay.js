@@ -2,12 +2,13 @@
 // class Game{
 module.exports = exports = Game;
 numberOfdecks = [1];
-
+var car = {type:"Fiat", model:"500", color:"white"};
 function Game(io, sockets, room) {
     
     this.io = io;
     this.room = room;
-
+    playedCards = [];
+    // var car = {type:"Fiat", model:"500", color:"white"};
     // Create and shuffle the deck
     this.deck = numberOfdecks.map(function(deckCards) {
         deckCards = []
@@ -66,13 +67,16 @@ function Game(io, sockets, room) {
 
       // Handle card played events 
       player.socket.on('played-card', function(cardName){
+
         console.log('played-card', cardName, 'player ', player.id);
         
         // TODO: player can only play cards in thier hand 
                 
         // if(player.hand.includes(cardName)){
           io.emit('card-played', {player: player.id, card: cardName});
-          console.log('The Card: ', cardName, " was played!");
+          playedCards.push(cardName);
+          // console.log('The Card: ', cardName, " was played by ",player.id);
+          console.log('The Card: ', playedCards, " was played by ",player.id);
         // }
       });
       
@@ -107,87 +111,3 @@ function Game(io, sockets, room) {
     this.io.to(this.room).emit('game on');
     // this.io.to(this.room).emit('card-played');
 }
-
-/*
-    // notify player 0 of thier info
-    this.players[0].emit('set', {
-      id: this.players[0].id,
-      name: this.players[0].name,
-      hand: this.players[0].hand
-    });
-    // notify player 1 of player 0 info\
-    this.players[1].emit('set', {
-      id: this.players[0].id,
-      name: this.players[0].name,
-      hand: this.players[1].hand.map(function(){return 'bb'})
-    })
-
-
-    this.io.to(this.room).emit('set', {
-      x: this.players[0].x,
-      y: this.players[0].y,
-      id: this.players[0].id,
-      name: 'YOU',
-      hand: this.x
-    });
-    
-    this.players[1].x = 210;
-    this.players[1].y = 25;
-    this.io.to(this.room).emit('set', {
-      x: this.players[1].x,
-      y: this.players[1].y,
-      id: this.players[1].id,
-      name: 'Player 1',
-      hand: this.xx
-    });
-
-    /*
-    this.players[2].x = 25;
-    this.players[2].y = 190;
-    this.io.to(this.room).emit('set', {
-      x: this.players[2].x,
-      y: this.players[2].y,
-      id: this.players[2].id,
-      name: 'PLAYER 2'
-    });
-    
-    this.players[3].x = 400;
-    this.players[3].y = 190;
-    this.io.to(this.room).emit('set', {
-      x: this.players[3].x,
-      y: this.players[3].y,
-      id: this.players[3].id,
-      name: 'PLAYER 3'
-    }); 
-    */
-
-
-/*
-Game.prototype.update = function() {
-    var room = this.room;
-    var io = this.io;
-
-    // Update players
-    this.players.forEach(function(player, i, players){
-      // var player = players[0];
-      var otherPlayer = players[(i+1)%2];
-      
-      player.socket.emit('victory');
-      
-      io.to(room).emit('set', {
-        x: player.x,
-        y: player.y,
-        id: player.id,
-        hand: player.hand,
-        name: player.name
-      });
-      
-      // io.to(room).emit('set', {
-      //   x: otherPlayer.x,
-      //   y: otherPlayer.y,
-      //   id: otherPlayer.id,
-      //   hand: otherPlayer.hand,
-      //   name: otherPlayer.name
-      // });
-    });
-} */

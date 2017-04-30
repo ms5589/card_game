@@ -1,8 +1,7 @@
 "use strict"
-
-var encryption = require('../encryption'), //USE AFTER PERMISSION
-    db = require('../db'),
-    formidable = require('formidable');
+var db = require('../db'),
+    formidable = require('formidable'),
+    encryption = require("../database/encryption");
 
 
 class Home{
@@ -72,8 +71,16 @@ class Home{
     }
 
     display404(req, res){
-      console.log("Controller > homepage.js > display404() =", req.url);
+      console.log("Controller > homepage.js > display404() for", req.url);      
+      // var users = db.get('SELECT * FROM users WHERE username=?', req.user.username,
+      //   function(err, item){
+      //     if(err) {
+      //       console.error(err);
+      //       return res.sendStatus(400);
+      //     }
+          // res.render('/error', {users: item});
       res.render('error');
+      // });
     }
 }
 

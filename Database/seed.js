@@ -10,12 +10,12 @@ db.serialize(function() {
   db.run("CREATE TABLE IF NOT EXISTS game (id INTEGER PRIMARY KEY, winner TEXT)");
   
   db.run("INSERT INTO users (username, fname, lname, email, coins, admin, blocked, password_digest, salt) VALUES (?,?,?,?,?,?,?,?,?)",
-    'admin',
-    'Admin',
-    'Boss',
-    'admin@test.edu',
-    2000000,
-    true,
+    'test404',
+    'No Coin',
+    'Broke',
+    'test404@test.edu',
+    2,
+    false,
     false,
     encryption.digest('000000' + salt),
     salt

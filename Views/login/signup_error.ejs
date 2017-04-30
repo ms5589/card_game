@@ -1,37 +1,79 @@
 <html>
 <head>
   <style>
-  body{ background-size: 1210px 655px; background-color: white; background-repeat: no-repeat; }
-  label{ font-size:26px;
-         margin: 0.3%;
-         font-weight: bold;
-         color: green; }
-  h8 { font-size: 15px; color: black;}
-  a {font-size: 23px; color: #330033;}
-  a:hover {color: #6600cc; font-size: 32px;}
   
+  body{
+    background-size: 1210px 655px;
+    background-color: white; 
+    background-repeat: no-repeat; 
+  }
+
+  label{ 
+    font-size:26px;
+    margin: 0.3%;
+    /*font-weight: bold;*/
+    color: green;
+  }
+
+  label span{ 
+    font-size:21px;
+    margin: 0.3%;
+    font-weight: bold;
+    color: green; 
+  }
+
+  form{
+    display: relative;
+    text-align: center;
+  }
+
+  h8{
+    font-size: 15px; 
+    color: black;
+  }
+  
+  a{
+    font-size: 23px; 
+    color: #330033;
+  }
+
+  a:hover{
+    color: #6600cc; 
+    font-size: 32px;
+  }
+  .message{
+    color: red;
+    font-size: 18px
+  }
   </style>
+
 </head>
-<div class="message">
-  <%= message %>
-</div>
 <body>
-<h1>Sign up</h1>
+<!-- <h1>Sign up</h1> -->
 
 <form action="/signup" method="POST">
-  <label for="username" >Select a Username
-  <input name="username" id="username" type="text" autocomplete="off" style="height: 35px; width: 158px; font-size: 25px;">
+  <label for="username" >Select a Username</label></br>
+  <input name="username" id="username" type="text" autocomplete="off" style="height: 32px; width: 158px; font-size: 25px;"></br></br>
+  
+  <label for="fname" ><span>Enter First Name</span></label></br>
+  <input name="fname" id="fname" type="text" autocomplete="on" style="height: 32px; width: 158px; font-size: 25px;"></br>
+  
+  <label for="lname" ><span>Enter Last Name</span></label></br>
+  <input name="lname" id="lname" type="text" autocomplete="on" style="height: 32px; width: 158px; font-size: 25px;"></br>
+
+  <label for="email" ><span>Email address</span></label></br>
+  <input name="email" id="email" type="text" autocomplete="on" style="height: 32px; width: 158px; font-size: 25px;"></br>
 
   <h8> </br></br>(Password has to be at least 6 characters long)</br>
   </h8>
-  <label for="password">Choose Password
+  <label for="password">Choose Password</label></br>
   <input name="password" id="password" type="password" onkeyup= check() style="height: 25px; width: 158px; font-size: 25px;"></br>
 
-  <label for="passwordTwo">Re-type the Password
-  <input name="passwordTwo" id="passwordTwo" type="password" onkeyup= check() style="height: 25px; width: 158px; font-size: 25px;"></br>
+  <label for="passwordTwo">Re-type the Password</label></br>
+  <input name="passwordTwo" id="passwordTwo" type="password" onkeyup= check() style="height: 25px; width: 158px; font-size: 25px;"></br></br>
 
-  <input type="submit" id="signup" value="Sign up" disabled="true" style="height: 45px; width: 168px; font-size: 25px; font-weight: bold">
-
+  <input type="submit" id="signup" value="Sign up" disabled="true" style="height: 45px; width: 168px; font-size: 25px; font-weight: bold"></br></br>
+  <div class="message"> <%= message %> </div>
 </form>
 
 <script type="text/javascript">
