@@ -1,14 +1,15 @@
 /* A module representing the game of lightbikes */
 // class Game{
 module.exports = exports = Game;
+
 numberOfdecks = [1];
-var car = {type:"Fiat", model:"500", color:"white"};
+
 function Game(io, sockets, room) {
     
     this.io = io;
     this.room = room;
     playedCards = [];
-    // var car = {type:"Fiat", model:"500", color:"white"};
+    
     // Create and shuffle the deck
     this.deck = numberOfdecks.map(function(deckCards) {
         deckCards = []

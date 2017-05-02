@@ -63,7 +63,7 @@ class Home{
           false,
           encryption.digest(fields.password + salt),
           salt, function(err, user) {
-          if(err) {console.log(err); return res.render('login/signup_error', {message: "Username is already taken.  Please try other username.", user: req.user});}
+          if(err) {console.log(err); return res.render('login/signup_error', {message: "Username is already taken. Try other username.", user: req.user});}
           else { return res.render('login/login', {message: "Account has been created, Please login now.", user: req.user});}
           return res.redirect('/login');
         });

@@ -76,3 +76,4 @@ http.listen(app.get('port'), function() {
 // https://www.shutterstock.com/video/clip-130507-stock-footage-showing-a-royal-straight-flush.html?src=rel/127663:1/3p
 // Reference: nathanhbean.com/courses/cis580 ---- > lightbikes
 // https://afeld.github.io/emoji-css/
+// http://www.destinycardreadings.com/wp-content/uploads/2012/07/playingcards.png

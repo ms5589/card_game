@@ -1,24 +1,52 @@
-
+<html>
 <style>
-body{ background-size: 1210px 655px; background-color: white; background-repeat: no-repeat; }
-label{ font-size:26px;
-       margin: 0.3%;
-       font-weight: bold;
-       color: green; }
-h5 { font-size: 24px; color: black;}
+  
+  body{ 
+    /*background-repeat: no-repeat;*/
+    background-size: 200px 200px;
+    background-image: url("signup.png");
+    background-repeat: repeat;
+  }
+  label{ 
+    font-size:26px;
+    margin: 0.3%;
+    font-weight: bold;
+    color: green; 
+  }
+  h5{ 
+    font-size: 24px; 
+    color: black;
+  }
+  .area{
+    width:380px;
+    position: relative;
+    left: 40%;
+    top: 10%;
+    background-image: url('white.png');
+  }
+  h1{
+    text-align: center;
+  }
+  #message{
+    color: red;
+  }
 </style>
-
-<h1>Log in</h1>
-<div class="message">
-  <%= message %>
-</div>
-<form action="/login" method="POST">
-  <label for="username">Username:
-    <input name="username" type="text" style="height: 25px; width: 158px; font-size: 25px;"></br>
-  </label>
-  <label for="password">Password:
-     <input name="password" type="password" style="height: 25px; width: 158px; font-size: 25px;">
-  </label> </br>
-  <input type="submit" value="Log In" style="height: 18px; width: 168px; font-size: 25px;">
-</form>
-</br><h5> Don't have an account? <a href="/signup"> Sign up</a> </h5>
+<body>
+  <div class="area" align="center">
+  <h1>Log in</h1>
+  <div id="message">
+  <%= message %></br></br>
+  </div>
+  <form action="/login" method="POST">
+    <label for="username">Username:
+      <input name="username" type="text" style="height: 25px; width: 158px; font-size: 25px;"></br>
+    </label>
+    <label for="password">&nbspPassword:&nbsp
+       <input name="password" type="password" style="height: 25px; width: 158px; font-size: 25px;">
+    </label> </br></br>
+    <input type="submit" value="Log In" style="height: 18px; width: 168px; font-size: 25px;">
+  </form>
+  </br><h5>&nbsp&nbsp&nbspDon't have an account? <a href="/signup"> Sign up</a></br> </h5>
+  </div>
+</body>
+</html>
