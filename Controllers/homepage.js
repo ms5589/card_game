@@ -70,17 +70,14 @@ class Home{
       });
     }
 
+    credit(req, res){
+      console.log("Controller > homepage.js > credit()");
+      res.render('credit');
+    }
+
     display404(req, res){
       console.log("Controller > homepage.js > display404() for", req.url);      
-      // var users = db.get('SELECT * FROM users WHERE username=?', req.user.username,
-      //   function(err, item){
-      //     if(err) {
-      //       console.error(err);
-      //       return res.sendStatus(400);
-      //     }
-          // res.render('/error', {users: item});
       res.render('error');
-      // });
     }
 }
 

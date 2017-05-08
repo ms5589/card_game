@@ -136,9 +136,10 @@
         <a href="/">Home page</a>&nbsp&nbsp&nbsp&nbsp
         <a href="/account">My account</a>&nbsp&nbsp&nbsp&nbsp
         <a href="/game">New game</a>&nbsp&nbsp&nbsp&nbsp
-        <% if(users.admin){ %>
+          <% if(users.admin){ %>
               <a href="/players">Players</a>&nbsp&nbsp&nbsp&nbsp
-        <% } %> 
+        <% } %>
+        <a href="/credits">Credits</a>&nbsp&nbsp&nbsp&nbsp
         <a href="/logout">Signout</a>&nbsp&nbsp&nbsp&nbsp
       </p1>
   </div>
@@ -204,6 +205,7 @@
           ev.preventDefault();
           var cardId = ev.dataTransfer.getData("text");
           var card = document.getElementById(cardId);
+          console.log('card', card);
           ev.target.appendChild(card);
           document.getElementById('table').removeChild(card);
           window.playCard(card.text);

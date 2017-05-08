@@ -45,6 +45,7 @@ app.get('/logout', homepage.logout)
 app.get('/login', homepage.getLogin);
 app.get('/signup', homepage.getSignup)
 app.get('/game', login, noGuest, gameController.startGame);
+app.get('/credits', homepage.credit);
 app.get('/dealer.js', gameController.dealer);
 app.get('/deck', deck.shuffleDeck);
 app.get('*', homepage.display404);
