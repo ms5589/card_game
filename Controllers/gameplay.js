@@ -51,6 +51,7 @@ function Game(io, sockets, room) {
         id: i+1,
         name: '',
         hand: hand,
+        score:0,
         table: ''
       }
 

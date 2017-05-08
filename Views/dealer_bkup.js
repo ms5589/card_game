@@ -10,7 +10,7 @@ window.onload = function() {
   var flag = []; //to keep track of which player played which card for during single hand
   var socket = io();
   var me = 1;
-  var score1; var score2;
+  
 
   // Set the players with card when the game beginss
   socket.on('set', function(set){
@@ -19,7 +19,7 @@ window.onload = function() {
       var id = player.id      // player's id
       var name = player.name  // player's name
       var hand = player.hand  // player's hand
-
+      // var score1; var score2;
       // save the current player globally
       me = id;
 
@@ -48,15 +48,13 @@ window.onload = function() {
   socket.on('game on', function() {
     
     message.innerHTML = 'Game started';
-
+    // var score1; var score2;
   });
 
   // This event will occur when a player plays the card
   socket.on('card-played', function(data) {
        console.log('DATAA: ',data);
-       var for_result = {card:data.card, player:data.player};       
-       score1 = 0;
-       score2 = 0;
+       var for_result = {card:data.card, player:data.player};
        var card = document.createElement("a");
        card.href = "#";
        card.text = " "+data.card;
@@ -91,6 +89,7 @@ window.onload = function() {
       
       if(id == 1){
           name = 'Player1';
+          var score1 = 0;
           var temp = ''+hand;
           var result1 = temp.split(",");
           for(var i=0; i<result1.length; i++){
@@ -99,6 +98,7 @@ window.onload = function() {
       }
       if(id == 2){
           name = 'Player2';
+          var score2 = 0;
           var temp = ''+hand;
           var result1 = temp.split(",");
           for(var i=0; i<result1.length; i++){
@@ -138,12 +138,16 @@ window.onload = function() {
         if(flag[m].card==temp[0]){
           console.log('dubug0, ',flag[m].player);
           if(flag[m].player==1){
-            score1.innerHTML = 'Score: ',score1+10;
+            var sm = score1.textContent;
+            console.log('score1: '+sm+' score2: '+score2.textContent);
+            score1.innerHTML = parseInt(sm)+10;
           }
           if(flag[m].player==2){
-            score2.innerHTML = 'Score: ',score2+10;
+            var ms = score2.textContent;
+            console.log('score2: '+ms+' score1: '+score1.textContent);
+            score2.innerHTML = parseInt(ms)+10;
           }
-          setTimeout(alert('Player'+flag[m].player+' won this hand'),2000);
+          setTimeout(alert('Player'+flag[m].player+' won this hand'+'\nPlayer1: '+score1.innerHTML+' \nPlayer2: '+score2.innerHTML),2000);
         }
       }
     }
@@ -154,12 +158,16 @@ window.onload = function() {
         if(flag[m].card==temp[1]){
           console.log('debug1, ',flag[m].player);
           if(flag[m].player==1){
-            score1.innerHTML = 'Score: ',score1+10;
+            var sm = score1.textContent;
+            console.log('score1: '+sm+' score2: '+score2.textContent);
+            score1.innerHTML = parseInt(sm)+10;
           }
           if(flag[m].player==2){
-            score2.innerHTML = 'Score: ',score2+10;
+            var ms = score2.textContent;
+            console.log('score2: '+ms+' score1: '+score1.textContent);
+            score2.innerHTML = parseInt(ms)+10;
           }
-          setTimeout(alert('Player'+flag[m].player+' won this hand'),2000);
+          setTimeout(alert('Player'+flag[m].player+' won this hand'+'\nPlayer1: '+score1.innerHTML+' \nPlayer2: '+score2.innerHTML),2000);
         }
       }
     }

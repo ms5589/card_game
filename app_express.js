@@ -72,9 +72,3 @@ io.on('connection', function(socket) {
 http.listen(app.get('port'), function() {
     console.log('Express started. Server listening on port 4002. Press Ctrl-C to terminate');
 });
-
-// 2168 2183 3099EH
-// https://www.shutterstock.com/video/clip-130507-stock-footage-showing-a-royal-straight-flush.html?src=rel/127663:1/3p
-// Reference: nathanhbean.com/courses/cis580 ---- > lightbikes
-// https://afeld.github.io/emoji-css/
-// http://www.destinycardreadings.com/wp-content/uploads/2012/07/playingcards.png
