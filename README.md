@@ -2,7 +2,7 @@
 This is an implementation of web application (multiplayer card game). It is created by using Node Express and socket io.
 
 
-Reference:
+# Reference:
 
  Bean, Nathan. "CIS580/lightbikes." GitHub. N.p., 09 Mar. 2017. Web. 08 Feb. 2017.
        https://github.com/CIS580/lightbikes
