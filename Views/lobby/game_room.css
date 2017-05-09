@@ -1,0 +1,13 @@
+#screen {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+}
+
+#message {
+  position: absolute;
+  width: 500px;
+  top: 50%;
+  text-align: center;
+  font-size: 30pt;
+}

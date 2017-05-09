@@ -1,6 +1,27 @@
 <title> Users </title>
 <h1>List of users</h1>
 
+    <style>
+    	.center
+        {
+            margin: auto;
+            width: 60%;
+            border: 3px solid;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
+     <div class="center">
+        <p1>
+            <small>Go to:</small>&nbsp
+            <big>
+            <a href="/">Home page</a>&nbsp&nbsp
+            <a href="/account">My account</a>&nbsp&nbsp
+            <a href="/game">New game</a>&nbsp&nbsp
+            <a href="/credits">Credits</a>&nbsp&nbsp&nbsp&nbsp
+            </big>
+        </p1>
+    </div>
     <% users.forEach(function(usr) { %>
-    <%- include('_user', {users: usr}) %>
+    	<%- include('_user', {users: usr}) %>
     <% }); %> </br>

@@ -1,0 +1,137 @@
+<!doctype html>
+<html>
+  <body>
+  <head>
+
+  <style>
+      #header{
+        color: red;
+        font-size: 23px;
+        background-color: yellow;
+      }
+      #player4 {
+        position: relative;
+        background-image: url("cards.png");
+        left: 402px;
+        width: 200px;
+        height: 100px;
+        /*right: 12px;*/
+        border: 3px solid #73AD21;
+      }
+      #player3 {
+        position: relative;
+        background-image: url("cards.png");
+        left: 710px;
+        top: 30px;
+        width: 200px;
+        height: 100px;
+        border: 3px solid #73AD21;
+      }
+      #player2 {
+        position: relative;
+        background-image: url("cards.png");
+        left: 120px;
+        bottom: 60px;
+        width: 200px;
+        height: 100px;
+        border: 3px solid #73AD21;
+      }
+      #player1 {
+        background-image: url("cards.png");
+        position: relative;
+        left: 402px;
+        width: 200px;
+        height: 100px;
+        border: 3px solid #73AD21;
+      }
+      #table {
+        background-image: url("table.jpg");
+        position: relative;
+        top: -300px;
+        left: 350px;
+        width: 320px;
+        height: 160px;
+        border: 3px solid #73AD21;
+      }
+      #table > a{
+        color: yellow;
+        text-align: center;
+      }
+  </style>
+
+  <title>Game Room EJS</title>
+
+  <div id="header">
+  &nbsp<a href="/account"> Account </a>&nbsp&nbsp&nbsp
+  &nbsp<a href="/players">Players </a>&nbsp&nbsp&nbsp
+  &nbsp<a href="/logout">Logout </a></br>
+  <p style="color: yellow; font-size: 14px">hidden text ;)</p>
+  </div>
+
+  <div class="error">
+  <%= error %>
+  </div>
+  
+  </head>
+  
+    <h1>Game Lobby</h1>
+    <div id="message">
+        Waiting for players...
+    </div></br> 
+    <div id="wrapper">
+    <!-- <canvas id="screen" width="620" height="620"></canvas> -->
+          <div id="player4">
+              Player4
+          </div>
+          <div id="player3">
+              Player3
+          </div>
+          <div id="player2">
+              Player2
+          </div>
+          <div id="player1">
+              Player1
+          </div>
+          <div id="table" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    </div>
+    <button onclick="myFunction()">Click me</button>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <!-- <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script> -->
+  <script type="text/javascript" src="dealer.js"></script>
+  <script>
+      
+      // var socket = io();
+      
+      function myFunction(){    
+          document.getElementById("table").innerHTML = '';
+          // alert(document.getElementById("table").innerHTML); 
+      }
+      
+      function allowDrop(ev) {
+          ev.preventDefault();
+      }
+
+      function drag(ev) {
+          ev.dataTransfer.setData("text", ev.target.id);
+      }
+
+      function drop(ev) {
+          ev.preventDefault();
+          var cardId = ev.dataTransfer.getData("text");
+          var card = document.getElementById(cardId);
+          ev.target.appendChild(card);
+          document.getElementById('table').removeChild(card);
+          window.playCard(card.text);
+      }
+
+      /* socket.on('new message', function(data)){
+          alert('do some');
+          // document.getElementById("table").innerHTML = data;
+      } */
+
+  </script>
+
+
+  </body>
+</html>

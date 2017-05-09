@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+  <body>
+  <head>
+  <style>
+      #player4 {
+        position: relative;
+        background-image: url("cards.png");
+        left: 402px;
+        width: 200px;
+        height: 100px;
+        /*right: 12px;*/
+        border: 3px solid #73AD21;
+      }
+      #score4 {
+        position: relative;
+        left: 402px;
+        top: -135px;
+      }
+      #score3 {
+        position: relative;
+        left: 715px;
+        bottom: -70px;
+      }
+      #player3 {
+        position: relative;
+        background-image: url("cards.png");
+        left: 710px;
+        top: 65px;
+        width: 200px;
+        height: 100px;
+        border: 3px solid #73AD21;
+      }
+      #player2 {
+        position: relative;
+        background-image: url("cards.png");
+        left: 110px;
+        bottom: 60px;
+        width: 200px;
+        height: 100px;
+        border: 3px solid #73AD21;
+      }
+      #score2 {
+        position: relative;
+        left: 120px;
+        bottom: 50px;
+      }
+      #player1 {
+        background-image: url("cards.png");
+        position: relative;
+        left: 402px;
+        width: 200px;
+        height: 100px;
+        border: 3px solid #73AD21;
+      }
+      #score1 {
+        position: relative;
+        left: 402px;
+        bottom: -15px;
+      }
+      #table {
+        background-image: url("table.jpg");
+        position: relative;
+        top: -325px;
+        left: 350px;
+        width: 320px;
+        height: 160px;
+        border: 3px solid #73AD21;
+      }
+      #table > a{
+        color: yellow;
+        text-align: center;
+      }
+  </style>
+  <title>Lobby</title>
+  <a href="/logout">Logout</a>
+  </head>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="dealer.js"></script>
+    <script>
+      function myFunction(){
+          // alert('hi');
+          alert(document.getElementById("table").innerHTML); 
+      }
+
+      function allowDrop(ev) {
+          ev.preventDefault();
+      }
+
+      function drag(ev) {
+          ev.dataTransfer.setData("text", ev.target.id);
+      }
+
+      function drop(ev) {
+          ev.preventDefault();
+          var data = ev.dataTransfer.getData("text");
+          ev.target.appendChild(document.getElementById(data));
+      }
+    </script>
+    <h1>Game Lobby</h1>
+    <div id="message">
+        Waiting for players...
+    </div></br> 
+    <div id="wrapper">
+      <!-- <canvas id="screen" width="620" height="620"></canvas> -->
+          <div id="player4">
+              Player4
+          </div>
+          <div id="score4">
+              Score:
+          </div>
+          <div id="player3">
+              Player3
+          </div>
+          <div id="score3">
+              Score:
+          </div>
+          <div id="player2">
+              Player2
+          </div>
+          <div id="score2">
+              Score:
+          </div>
+          <div id="player1">
+              Player1
+          </div>
+          <div id="score1">
+              Score:
+          </div>
+          <div id="table" ondrop="drop(event)" ondragover="allowDrop(event)"> </div>
+
+    </div>
+    <button onclick="myFunction()">Clear Table</button>
+  </body>
+</html>

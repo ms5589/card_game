@@ -1,0 +1,111 @@
+<html>
+    <style>
+        table, th, td
+        {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td
+        {
+            padding: 5px;
+            text-align: left;    
+        }
+        body
+        { 
+            background-color: white; 
+            background-repeat: no-repeat; 
+        }
+        h1 
+        { 
+            text-align: center;
+            font-size: 50px; 
+            font-family: Courier New;
+            color: red; 
+        }
+        a
+        { 
+            font-size: 20px;
+            color: black;
+            text-decoration: none ;
+            background-color: white; 
+        }
+        span.align-right
+        {
+            text-align:right;
+        }
+        a:hover
+        { 
+            color: black;
+            text-decoration: none ;
+            background-color: #d6ff8c; 
+        }
+        p
+        {
+            text-align: center;
+            font-size: 50px; 
+            font-family: Courier New;
+        }
+        .center
+        {
+            margin: auto;
+            width: 60%;
+            border: 3px solid;
+            padding: 10px;
+            text-align: center;
+        }
+        .reference
+        {
+            margin: auto;
+            width: 60%;
+            border: 3px solid;
+            padding: 10px;
+            /*text-align: center;*/
+        }
+    </style>
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <title>My Account</title>
+
+    <h1></br>Account details:</h1>
+     <div class="center">
+        <p1>
+            <small>Go to:</small>&nbsp
+            <big>
+            <a href="/">Home page</a>&nbsp&nbsp
+            <a href="/account">My account</a>&nbsp&nbsp
+            <a href="/game">New game</a>&nbsp&nbsp
+            <a href="/credits">Credits</a>&nbsp&nbsp
+            <a href="/logout">Signout</a>&nbsp&nbsp&nbsp&nbsp
+            </big>
+        </p1>
+    </div>
+    <div class="reference">
+        <table style="width:60%">
+          <tr>
+            <th>Username:</th>
+            <td><%= users.username %></td>
+          </tr>
+          
+          <tr>
+            <th>Name:</th>
+            <td><%= users.fname %>&nbsp<%= users.lname %></td>
+          </tr>
+          
+          <tr>
+            <th>Coins:</th>
+            <td><%= users.coins %></td>
+          </tr>
+
+          <tr>
+            <th>Email:</th>
+            <td><%= users.email %></td>
+          </tr>
+
+          <tr>
+            <th>Password:</th>
+            <td>******</td>
+          </tr>
+
+        </table>
+
+    </div>
+</html>
