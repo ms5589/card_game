@@ -18,3 +18,5 @@ This is an implementation of web application (multiplayer card game). It is crea
        
  Thanks to the below link as well for cards CSS
        https://github.com/selfthinker/CSS-Playing-Cards
+ 
+Thanks to W3Schools for many Javascript quick tutorials 
