@@ -8,7 +8,7 @@ class Home{
 
     index(req, res){
       console.log("Controller > User > index()");
-      res.render('login/index');
+      res.render('homepage');
     }
   	
   	logout(req, res){

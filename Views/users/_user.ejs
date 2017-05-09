@@ -1,14 +1,59 @@
- <html>
- <body>
- <label for="user" font-size="46px">Username:</label>
- <input name="user" type="text" id="user"
- value="<%= users.username %>" readonly="readonly" autocomplete="off"/> </br>
+<html>
+    <style>
+        body
+        { 
+            background-color: white; 
+            background-repeat: no-repeat; 
+        }
+        h1 
+        { 
+            text-align: center;
+            font-size: 50px; 
+            font-family: Courier New;
+            color: red; 
+        }
+        a
+        { 
+            font-size: 20px;
+            color: black;
+            text-decoration: none ;
+            background-color: white; 
+        }
+        span.align-right
+        {
+            text-align:right;
+        }
+        a:hover
+        { 
+            color: black;
+            text-decoration: none ;
+            background-color: #d6ff8c; 
+        }
+        p
+        {
+            text-align: center;
+            font-size: 50px; 
+            font-family: Courier New;
+        }
+        .reference
+        {
+            margin: auto;
+            width: 60%;
+            border: 3px solid;
+            padding: 10px;
+            /*height: 50%;*/
+            /*text-align: center;*/
+        }
+    </style>
+    <!-- <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet"> -->
+    <div class="reference">
+    	<label for="user" font-size="46px">Username:</label>
+ 		<input name="user" type="text" id="user" value="<%= users.username %>" readonly="readonly" autocomplete="off"/> </br>
  
- <label for="user" font-size="46px">First Name:</label>
- <input name="user" type="text" id="user"
- value="<%= users.fname %>" readonly="readonly" autocomplete="off"/> </br>
+ 		<label for="user" font-size="46px">First Name:</label>
+ 		<input name="user" type="text" id="user" value="<%= users.fname %>" readonly="readonly" autocomplete="off"/> </br>
 
- <label for="user" font-size="46px">Last Name:</label>
- <input name="user" type="text" id="user"
- value="<%= users.lname %>" readonly="readonly" autocomplete="off"/> </br> </br> </br>
- </body>
+ 		<label for="user" font-size="46px">Last Name:</label>
+ 		<input name="user" type="text" id="user" value="<%= users.lname %>" readonly="readonly" autocomplete="off"/> </br>
+    </div>
+</html>
