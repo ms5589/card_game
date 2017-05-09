@@ -129,6 +129,22 @@
             font-family: Courier New;
             color: red; 
         }
+        .card {
+          display: block;
+          float: left;
+          margin-right: 10px;
+          border: 1px solid gray;
+          border-radius: 2px;
+          height: 40px;
+          width: 20px;
+          background-image: url(data:image/gif;base64,R0lGODlhJAAkAJEAAOjFsezdztOKbL5QKCH5BAAAAAAALAAAAAAkACQAAAL/HC4RAqm/mmLHyHmAbczB11Ea8ombJKSgKo6Z17pXFznmS1JptiX0z3vVhpEKDoUIkoa0olGIUeZUk1RI6Yn2mh/FDAt6frOrRRTqXPpsVLYugzxaVy+YcBdnoWPZOT0E4eckQtZFZBjWoHixQFWl6Nhol6R2p1Okt5TGaEWZA6fjiMdhZgPHeWrTWGVq+jTZg1HYyAEWKLYzmyiGKoUimilz+YYryyTlg5RcDJSAbNx0Q7lMcbIGEyzTK8zVdfVaImzs/QV+prYqWWW2ObkoOApM/Em/rUlIm7fijs8a2EEKEaZ3AsMUgneEU6RcpJbZ27aGHkAO2Ors8xQH1IR0Bn5YnOtVAAA7); /* image is "Pattern 069" from http://www.squidfingers.com/patterns/ */
+        }
+        .JD { 
+          background-image: url(faces/JD.gif);
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: contain; 
+        };
   </style>
 
   <title>Game Room</title>
@@ -155,25 +171,25 @@
     
     <div id="wrapper">
     <!-- <canvas id="screen" width="620" height="620"></canvas> -->
-          <div id="player4">
+          <div id="player4" class="hand">
               Player4
           </div>
           <div id="score4">
               0
           </div>
-          <div id="player3">
+          <div id="player3" class="hand">
               Player3
           </div>
           <div id="score3">
               0
           </div>
-          <div id="player2">
+          <div id="player2" class="hand">
               Player2
           </div>
           <div id="score2">
               0
           </div>
-          <div id="player1">
+          <div id="player1" class="hand">
               Player1
           </div>
           <div id="score1">

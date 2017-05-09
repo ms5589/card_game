@@ -25,19 +25,31 @@ window.onload = function() {
 
       if(id == 1){
           name = 'Player1';
-          player1.innerHTML =  name+': '+hand;
+          player1.innerHTML =  name+':'
+          for(var i=0; i<player.hand.length; i++){
+            player1.innerHTML += "<div class='card'></div>"+"&nbsp&nbsp";
+          } 
       }
       if(id == 2){
           name = 'Player2';
-          player2.innerHTML =  name+': '+hand;
+          player2.innerHTML =  name+':'
+          for(var i=0; i<player.hand.length; i++){
+            player2.innerHTML += "<div class='card'></div>"+"&nbsp&nbsp";
+          } 
       }
       if(id == 3){
           name = 'Player3';
-          player3.innerHTML =  name+': '+hand;
+          player3.innerHTML =  name+':'
+          for(var i=0; i<player.hand.length; i++){
+            player3.innerHTML += "<div class='card'></div>"+"&nbsp&nbsp";
+          } 
       }
       if(id == 4){
           name = 'Player4';
-          player4.innerHTML =  name+': '+hand;
+          player4.innerHTML =  name+':'
+          for(var i=0; i<player.hand.length; i++){
+            player4.innerHTML += "<div class='card'></div>"+"&nbsp&nbsp";
+          } 
       }
 
     })
@@ -86,14 +98,17 @@ window.onload = function() {
       var id = plyr.id;
       var hand = plyr.hand;
       var name = plyr.name;
+
+      console.log(plyr.id, plyr.hand, plyr.name)
       
       if(id == 1){
           name = 'Player1';
           var score1 = 0;
           var temp = ''+hand;
           var result1 = temp.split(",");
+          player1.innerHTML = name + ":";
           for(var i=0; i<result1.length; i++){
-            player1.innerHTML += "<a href='#' draggable='true' ondragstart='drag(event)'id="+(i+1)+">"+result1[i]+"</a>"+"&nbsp&nbsp";
+            player1.innerHTML += "<a href='#' class='card "+result1[i]+ "' draggable='true' ondragstart='drag(event)'id="+(i+1)+">"+result1[i]+"</a>"+"&nbsp&nbsp";
           }          
       }
       if(id == 2){
@@ -101,8 +116,9 @@ window.onload = function() {
           var score2 = 0;
           var temp = ''+hand;
           var result1 = temp.split(",");
+          player2.innerHTML = name + ":";
           for(var i=0; i<result1.length; i++){
-            player2.innerHTML += "<a href='#' draggable='true' ondragstart='drag(event)'id="+(i+1)+">"+result1[i]+"</a>"+"&nbsp&nbsp";
+            player2.innerHTML += "<a href='#' class='card "+result1[i]+"' draggable='true' ondragstart='drag(event)'id="+(i+1)+">"+result1[i]+"</a>"+"&nbsp&nbsp";
           }  
       }
       if(id == 3){
